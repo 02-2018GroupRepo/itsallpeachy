@@ -19,4 +19,5 @@ public class Store {
     public void setProductAvail(String product, Integer num) {
         this.productAvail.put(product, num);
     }
+    
 }

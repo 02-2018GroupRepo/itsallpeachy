@@ -22,45 +22,39 @@ public class Main {
 		vendorList.add(vendor3);
 
 		Product soap = new Product("Soap", "One bar of soap", 1.50d, 2);
-		Product broom = new Product("Broom", "One bristle broom", 9.50d);
+		Product broom = new Product("Broom", "One bristle broom", 9.50d, 0);
 		Product bucket = new Product("Bucket", "One metal bucket", 12d, 7);
-		Product cup = new Product("Cup", "10 pack of cups", 4d);
-		Product phone = new Product("Phone", "one landline phone", 40d);
+		Product cup = new Product("Cup", "10 pack of cups", 4d, 0);
+		Product phone = new Product("Phone", "one landline phone", 40d, 0);
 		Product[] productList1 = {soap, broom, bucket, phone, cup};
 
 		for (Product product : productList1) {
-			if (product.getQty() > 0) {
 				vendor1.add(product);
 				System.out.println(product.toString());
 				store.setProductAvail(product.getName(), product.getQty());
-			}
 		}
 
-		Product marker = new Product("Marker", "Magic Marker", 3d);
+		Product marker = new Product("Marker", "Magic Marker", 3d, 0);
 		Product pen = new Product("Pen", "12 ball point pens", 6.5d, 3);
-		Product pencil = new Product("Pencil", "number 2 pencil, 10 pack", 5.45d);
-		Product table = new Product("Table", "one folding table", 45.5d);
-		Product chair = new Product("Chair", "one folding chair", 19.99d);
+		Product pencil = new Product("Pencil", "number 2 pencil, 10 pack", 5.45d, 0);
+		Product table = new Product("Table", "one folding table", 45.5d, 0);
+		Product chair = new Product("Chair", "one folding chair", 19.99d, 0);
 		Product[] productList2 = {marker, pen, pencil, table, chair};
 		for (Product product : productList2) {
-			if (product.getQty() > 0) {
 				vendor2.add(product);
 				System.out.println(product.toString());
 				store.setProductAvail(product.getName(), product.getQty());
-			}
 		}
-		Product shirt = new Product("Shirt", "button up shirt", 7.49d);
+		Product shirt = new Product("Shirt", "button up shirt", 7.49d, 0);
 		Product pants = new Product("Pants", "old Dockers", 8.24d, 7);
-		Product belt = new Product("Belt", "brown leather belt", 4.87d);
-		Product shoes = new Product("Shoes", "beat up sperrys", 8d);
-		Product hat = new Product("Hat", "90s revival bucket hat", 6.45d);
+		Product belt = new Product("Belt", "brown leather belt", 4.87d, 0);
+		Product shoes = new Product("Shoes", "beat up sperrys", 8d, 0);
+		Product hat = new Product("Hat", "90s revival bucket hat", 6.45d, 0);
 		Product[] productList3 = {shirt, pants, belt, shoes, hat};
 		for (Product product : productList3) {
-			if (product.getQty() > 0) {
 				vendor3.add(product);
 				System.out.println(product.toString());
 				store.setProductAvail(product.getName(), product.getQty());
-			}
 		}
 		Scanner keyboard = new Scanner(System.in);
 
@@ -68,6 +62,7 @@ public class Main {
 		ArrayList<Product> cart = new ArrayList<Product>();
 
 		while (imStillHere) {
+			System.out.println(store.getProductAvail());
 			System.out.print("Cart options:" + "\n" +
 					"1 to view contents of the cart" + "\n" +
 					"2 to add product to your cart" + "\n" +

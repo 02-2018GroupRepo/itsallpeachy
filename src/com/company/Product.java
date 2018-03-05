@@ -56,7 +56,7 @@ public class Product {
 
     public String toString(){
         return "Product: " + getName() + "\n"+
-                "Price: " + getPrice() + "\n"+
+                "Price: " + String.format("$%.2f", getPrice()) + "\n"+
                 "-----------------";
     }
 
