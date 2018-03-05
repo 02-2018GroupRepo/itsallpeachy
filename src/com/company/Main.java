@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
+
+		Store store = new Store();
 		// write your code here
 		boolean imStillHere = true;
 		ArrayList<Product> vendor1 = new ArrayList<Product>();
@@ -30,6 +32,7 @@ public class Main {
 			if (product.getQty() > 0) {
 				vendor1.add(product);
 				System.out.println(product.toString());
+				store.setProductAvail(product.getName(), product.getQty());
 			}
 		}
 
@@ -43,6 +46,7 @@ public class Main {
 			if (product.getQty() > 0) {
 				vendor2.add(product);
 				System.out.println(product.toString());
+				store.setProductAvail(product.getName(), product.getQty());
 			}
 		}
 		Product shirt = new Product("Shirt", "button up shirt", 7.49d);
@@ -55,8 +59,8 @@ public class Main {
 			if (product.getQty() > 0) {
 				vendor3.add(product);
 				System.out.println(product.toString());
+				store.setProductAvail(product.getName(), product.getQty());
 			}
-
 		}
 		Scanner keyboard = new Scanner(System.in);
 
@@ -144,6 +148,7 @@ public class Main {
 			System.out.println("Item: " + product.getName() + "\n" + "Price: " + product.getPrice() + "\n" + "------------");
 			total += product.getPrice();
 		}
-		System.out.println("YOUR TOTAL IS: " + total);
+
+		System.out.format("YOUR TOTAL IS: $%.2f", total);
 	}
 }
