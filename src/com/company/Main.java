@@ -126,7 +126,8 @@ public class Main {
 		// Check whats in the final cart
 		System.out.println("\n" + "****ITEMS IN CART****" + "\n");
 		for (Product product : cart) {
-			System.out.println("Item: " + product.getName() + "\n" + "Price: " + product.getPrice() + "\n" + "------------");
+			//System.out.println("Item: " + product.getName() + "\n" + "Price: " + product.getPrice() + "\n" + "------------");
+			System.out.format("Item: " + product.getName() + "\n" + "Price: $%.2f \n" + "------------", product.getPrice());
 		}
 	}
 
@@ -145,7 +146,7 @@ public class Main {
 		System.out.println("\n" + "****ITEMS IN CART****" + "\n");
 		double total = 0;
 		for (Product product : cart) {
-			System.out.println("Item: " + product.getName() + "\n" + "Price: " + product.getPrice() + "\n" + "------------");
+			System.out.format("Item: " + product.getName() + "\n" + "Price: %.2f\n" + "------------", product.getPrice());
 			total += product.getPrice();
 		}
 

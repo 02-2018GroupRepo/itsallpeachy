@@ -25,12 +25,12 @@ public class Store {
     }
 
     public void decreaseInventory(Product product) {
-        int prevItemCount = productAvail.get(product);
+        int prevItemCount = productAvail.get(product.getName());
         this.setProductAvail(product.getName(), prevItemCount - 1);
     }
 
     public void increaseInventory(Product product) {
-        int prevItemCount = productAvail.get(product);
+        int prevItemCount = productAvail.get(product.getName());
         this.setProductAvail(product.getName(), prevItemCount + 1);
     }
 
