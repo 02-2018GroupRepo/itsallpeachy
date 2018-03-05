@@ -62,7 +62,6 @@ public class Main {
 		ArrayList<Product> cart = new ArrayList<Product>();
 
 		while (imStillHere) {
-			System.out.println(store.getProductAvail());
 			System.out.print("Cart options:" + "\n" +
 					"1 to view contents of the cart" + "\n" +
 					"2 to add product to your cart" + "\n" +
@@ -83,8 +82,13 @@ public class Main {
 						for (ArrayList<Product> vendor : vendorList) {
 							for (Product product : vendor) {
 								if (secondInput.equalsIgnoreCase(product.getName())) {
-									addToCart(product, cart);
-									product.decrementStock();
+									if (store.getItemInventory(product.getName()) == 0) {
+										System.out.println(product.getName() + " is currently out of stock.");
+									} else {
+										addToCart(product, cart);
+										store.decreaseInventory(product);
+										//product.decrementStock(); Inventory is now removed from the store
+									}
 								}
 							}
 						}
@@ -92,7 +96,7 @@ public class Main {
 						break;
 					case 3:
 						String thirdInput = keyboard.next();
-						removeFromCart(thirdInput, cart);
+						removeFromCart(thirdInput, cart, store);
 						break;
 					case 4:
 						keyboard.close();
@@ -126,10 +130,11 @@ public class Main {
 		}
 	}
 
-	public static void removeFromCart(String thirdInput, ArrayList<Product> cart) {
+	public static void removeFromCart(String thirdInput, ArrayList<Product> cart, Store store) {
 		for (Product product : cart) {
 			if (thirdInput.equalsIgnoreCase(product.getName())) {
 				cart.remove(product);
+				store.increaseInventory(product);
 				break;
 			}
 		}
