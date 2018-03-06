@@ -1,12 +1,13 @@
 package com.company;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws java.io.IOException {
 
 		Store store = new Store();
 		// write your code here
@@ -15,6 +16,8 @@ public class Main {
 		ArrayList<Product> vendor2 = new ArrayList<Product>();
 		ArrayList<Product> vendor3 = new ArrayList<Product>();
 
+
+		List<Product> myList = vendor1.stream().filter(e -> e.getPrice() > 2).collect(Collectors.toList());
 		// Create a array list that contains the vendors
 		ArrayList<ArrayList<Product>> vendorList = new ArrayList<ArrayList<Product>>();
 		vendorList.add(vendor1);
@@ -27,6 +30,7 @@ public class Main {
 		Product cup = new Product("Cup", "10 pack of cups", 4d, 0);
 		Product phone = new Product("Phone", "one landline phone", 40d, 0);
 		Product[] productList1 = {soap, broom, bucket, phone, cup};
+
 
 		for (Product product : productList1) {
 				vendor1.add(product);
@@ -56,6 +60,7 @@ public class Main {
 				System.out.println(product.toString());
 				store.setProductAvail(product.getName(), product.getQty());
 		}
+
 		Scanner keyboard = new Scanner(System.in);
 
 
@@ -122,11 +127,12 @@ public class Main {
 		cart.add(product);
 	}
 
-	public static void viewCart(ArrayList<Product> cart) {
+	public static void viewCart(ArrayList<Product> cart)  {
 		// Check whats in the final cart
 		System.out.println("\n" + "****ITEMS IN CART****" + "\n");
+		String fileOutput = "";
 		for (Product product : cart) {
-			//System.out.println("Item: " + product.getName() + "\n" + "Price: " + product.getPrice() + "\n" + "------------");
+		    fileOutput += String.format("Item: " + product.getName() + "\n" + "Price: $%.2f \n" + "------------", product.getPrice());
 			System.out.format("Item: " + product.getName() + "\n" + "Price: $%.2f \n" + "------------", product.getPrice());
 		}
 	}
@@ -141,14 +147,20 @@ public class Main {
 		}
 	}
 
-	public static void checkout(ArrayList<Product> cart) {
+	public static void checkout(ArrayList<Product> cart) throws java.io.IOException  {
 		// Check whats in the final cart
 		System.out.println("\n" + "****ITEMS IN CART****" + "\n");
 		double total = 0;
+		String fileOutput = "";
 		for (Product product : cart) {
+		    fileOutput += String.format("Item: " + product.getName() + "\n" + "Price: %.2f\n" + "------------", product.getPrice());
 			System.out.format("Item: " + product.getName() + "\n" + "Price: %.2f\n" + "------------", product.getPrice());
 			total += product.getPrice();
 		}
+        fileOutput += String.format("%.2f", total);
+        try (FileWriter writer = new FileWriter("receipt.txt")) {
+            writer.write(fileOutput);
+        }
 
 		System.out.format("YOUR TOTAL IS: $%.2f", total);
 	}

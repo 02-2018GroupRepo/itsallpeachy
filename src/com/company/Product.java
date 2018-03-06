@@ -6,6 +6,8 @@ public class Product {
     private String description;
     private int qty;
 
+
+
     public Product(String name, String description, double price, int qty) {
         this.name = name;
         this.price = price;
@@ -52,12 +54,6 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String toString(){
-        return "Product: " + getName() + "\n"+
-                "Price: " + String.format("$%.2f", getPrice()) + "\n"+
-                "-----------------";
     }
 
     public int getQty() {
